@@ -5,21 +5,22 @@
  * 
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
-int cap = 10;
+int cap = 1000;
 
-List<int> multipleChecks = [3, 5];
 List<int> answer = [];
+//int RealAnswer = 0;
 
-for (int i = 1; i < cap; i++)
+for (int i = cap-1; i > 0; i--)
 {
-    foreach (int j in multipleChecks)
+    if(i%5==0 || i%3==0)
     {
-        if (i % j == 0)
-        {
-            answer.Add(i);
-            break;
-        }
+        answer.Add(i);
+        //RealAnswer += i;
     }
 }
 
-Console.WriteLine($"Answer List: {string.Join(", ", answer)}");
+Console.WriteLine($"Answer: {string.Join(", ", answer)}");
+
+Console.WriteLine($"Sum Of: {answer.Sum()}");
+
+//Answer is: 233168
