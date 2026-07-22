@@ -31,8 +31,8 @@ class SolutionRecursive
         //Base Case: stop when hit 0
         current <= 0
             ? 0
-            : (current % 100 == 0 && Log($"[Progress] Processing {current}"),
-             (current % 3 == 0 || current % 5 == 0 ? current : 0)
+            : (current % 100 == 0 && Log($"[Progress] Processing {current}"), //bool logging trick?
+             (current % 3 == 0 || current % 5 == 0 ? current : 0) //item 2: recursive math
             + Solve(current - 1)).Item2;
 }
 
