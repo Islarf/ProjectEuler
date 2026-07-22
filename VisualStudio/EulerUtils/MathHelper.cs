@@ -1,6 +1,6 @@
 ﻿namespace EulerUtils
 {
-    public class Class1
+    public class MathHelper
     {
 
     }
