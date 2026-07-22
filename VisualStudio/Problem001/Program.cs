@@ -5,22 +5,55 @@
  * 
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
+
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
 int cap = 1000;
+/*
+ * SolutionLoop x = new SolutionLoop();
+ * x.Solve(cap);
+ * Console.Write(x.AnswerList.Sum());
+*/
 
-List<int> answer = [];
-//int RealAnswer = 0;
 
-for (int i = cap-1; i > 0; i--)
+
+SolutionRecursive x = new SolutionRecursive();
+int sum = x.Solve(cap-1);
+Console.WriteLine($"Answer: {sum}");
+
+//RecursiveAnswer
+class SolutionRecursive
 {
-    if(i%5==0 || i%3==0)
+    private static bool Log(string msg) { Console.WriteLine(msg); return true; }
+
+    public int Solve(int current) =>
+        //Base Case: stop when hit 0
+        current <= 0
+            ? 0
+            : (current % 100 == 0 && Log($"[Progress] Processing {current}"),
+             (current % 3 == 0 || current % 5 == 0 ? current : 0)
+            + Solve(current - 1)).Item2;
+}
+
+//LOOP ANSWER
+class SolutionLoop
+{
+    public List<int> AnswerList = new List<int>();
+    public void Solve(int cap)
     {
-        answer.Add(i);
-        //RealAnswer += i;
+        Console.WriteLine("Running Loop Solution...");
+        AnswerList.Clear();
+        for (int i = cap-1; i > 0; i--)
+        {
+            if(i%5==0 || i%3==0)
+            {
+                AnswerList.Add(i);
+            }
+        }
+        return;
     }
 }
 
-Console.WriteLine($"Answer: {string.Join(", ", answer)}");
-
-Console.WriteLine($"Sum Of: {answer.Sum()}");
 
 //Answer is: 233168
