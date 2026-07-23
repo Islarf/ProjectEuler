@@ -14,19 +14,45 @@ using System.Runtime.InteropServices; //so i have access to MathHelper.cs
 int MaxTerm = 4000000; //cap for the problem
 int current = 1;
 int last = 1;
-int SumOfEvens = 0;
 
-while(current < MaxTerm)
+
+//Console.WriteLine($"The sum of the even fibonacci sequence before {MaxTerm} (using a loop) is: {Solution.Loop(current, last, MaxTerm)}");
+
+Console.WriteLine($"The sum of the even fibonacci sequence before {MaxTerm} (using recursion) is: {Solution.Recursive(current, last, MaxTerm)}");
+
+
+
+
+class Solution
 {
-    Console.Write($"{current}, ");
-    
-    SumOfEvens += MathHelper.IsEven(current) ? current : 0;
+    public static int Loop(int current, int last, int MaxTerm)
+    {
+        int SumOfEvens = 0;
+        while (current < MaxTerm)
+        {
+            //Console.Write($"{current}, ");
+            SumOfEvens += MathHelper.IsEven(current) ? current : 0;
+            int temp = current;
+            current += last;
+            last = temp;
+        }
+        return SumOfEvens;
+    }
 
-    int temp = current;
-    current += last;
-    last = temp;
+    public static int Recursive(int current, int last, int MaxTerm)
+    {
+        if(current >= MaxTerm)
+        {
+            return 0;
+        }
+        else
+        {
+            int SumOfEvens = (MathHelper.IsEven(current) ? current : 0); // store the sum of current if it is even.
+            int temp = current; // save the old current
+            current += last; // do the fibonacci dance
+            return SumOfEvens + (Recursive(current, temp, MaxTerm)); // return the sum plus the next one (or 0)
+        }
+    }
 }
 
-Console.WriteLine($"The sum of all evens: {SumOfEvens}");
 
-//Console.WriteLine(MathHelper.IsEven());
