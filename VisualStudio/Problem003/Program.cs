@@ -8,5 +8,4 @@
 
 using EulerUtils;//so i have access to MathHelper.cs
 
-int checker = 23;
-Console.WriteLine($"Is ({checker}) Prime?: {MathHelper.IsPrime(checker)}");
+List<int> primes = [];
