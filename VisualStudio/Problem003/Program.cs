@@ -8,8 +8,11 @@
 
 using EulerUtils;//so i have access to MathHelper.cs
 
-int x = 13195;
+long x = 600851475143;
 List<long> pfs = MathHelper.PrimeFactors(x);
 
 Console.WriteLine($"" +
-    $"The prime factors of ({x}) are: {String.Join(", ", pfs)}");
+    $"The prime factors of ({x}) are: {String.Join(", ", pfs)}" +
+    $"\nThe Largest prime factor of this is {pfs.Max()}");
+
+//answer: 6857
