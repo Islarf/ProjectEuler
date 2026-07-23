@@ -31,6 +31,20 @@ namespace EulerUtils
         private static long FindNextPrime(long x) =>
             IsPrime(x) ? x : FindNextPrime(x + 2);
 
+        private static long LastPrime(long x) =>
+            FindLastPrime(
+                x <= 2
+                ? -1
+                : x == 3 
+                    ? 2 
+                    : x % 2 == 0
+                        ? x - 1
+                        : x - 2
+                );
+
+        private static long FindLastPrime(long x) =>
+            IsPrime(x) ? x : FindLastPrime(x - 2);
+
 
         public static long ListProduct(List<long> x) => x == null || x.Count == 0
             ? 0
@@ -40,18 +54,31 @@ namespace EulerUtils
             ? total
             : NextProduct(total * list[index], index + 1, list);
         
-        /*
-         * public static List<int> PrimeFactors(int x)
+        
+        public static List<long> PrimeFactors(long x)
         {
-            List<int> sln = new List<int>();
-            if(x < 2) return sln;
-            else if (x == 2) return [2];
-            else if (IsPrime(x)) return [x];
-            
-            while(sln.Sum)
+            List<long> sln = new List<long>();
+            if (IsPrime(x)) return [x];
+            if (x < 2) return [];
+            if (x == 2) return [2];
+
+            long start = 2;
+            while (true)
+            {
+                if (x == start) { sln.Add(start); break; }
+                if(x % start == 0)
+                {
+                    sln.Add((long)start);
+                    x /= start;
+                }
+                else
+                {
+                    start = NextPrime(start);
+                }
+            }
             return sln;
         }
-        */
+        
     }
 }
 
