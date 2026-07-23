@@ -11,4 +11,22 @@
 using EulerUtils;
 using System.Runtime.InteropServices; //so i have access to MathHelper.cs
 
-Console.WriteLine(MathHelper.IsEven(24));
+int MaxTerm = 4000000; //cap for the problem
+int current = 1;
+int last = 1;
+int SumOfEvens = 0;
+
+while(current < MaxTerm)
+{
+    Console.Write($"{current}, ");
+    
+    SumOfEvens += MathHelper.IsEven(current) ? current : 0;
+
+    int temp = current;
+    current += last;
+    last = temp;
+}
+
+Console.WriteLine($"The sum of all evens: {SumOfEvens}");
+
+//Console.WriteLine(MathHelper.IsEven());
