@@ -8,8 +8,7 @@
  * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-values terms.
  */
 
-using EulerUtils;
-using System.Runtime.InteropServices; //so i have access to MathHelper.cs
+using EulerUtils;//so i have access to MathHelper.cs
 
 int MaxTerm = 4000000; //cap for the problem
 int current = 1;
