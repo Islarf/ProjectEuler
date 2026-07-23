@@ -55,21 +55,7 @@ namespace EulerUtils
             : NextProduct(total * list[index], index + 1, list);
         
         
-        private static List<long> ListAppend(List<long> x, long y) { x.Add(y); return x; }
-
-        public static List<long> PrimeFactors(long x) =>
-                x < 2 
-                ? new List<long>() 
-                : GetPrimeFactors(x, 2, new List<long>());
- 
-        private static List<long> GetPrimeFactors(long x, long start, List<long> primeFactors) =>
-            x < 2
-            ? primeFactors
-            : start * start > x
-                ? ListAppend(primeFactors, x)
-                : x % start == 0
-                    ? GetPrimeFactors(x/start, start, ListAppend(primeFactors, start))
-                     : GetPrimeFactors(x, (start == 2 ? 3 : start + 2), primeFactors);
+        
         
     }
 }

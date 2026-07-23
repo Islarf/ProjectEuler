@@ -9,10 +9,37 @@
 using EulerUtils;//so i have access to MathHelper.cs
 
 long x = 600851475143;
-List<long> pfs = MathHelper.PrimeFactors(x);
 
-Console.WriteLine($"" +
-    $"The prime factors of ({x}) are: {String.Join(", ", pfs)}" +
-    $"\nThe Largest prime factor of this is {pfs.Max()}");
+Problem3.Solve(x);
+
+
+
+public static class Problem3
+{
+    public static void Solve(long input)
+    {
+        List<long> primefactors = PrimeFactors(input);
+        Console.WriteLine($"" +
+        $"The prime factors of ({input}) are: {String.Join(", ", primefactors)}" +
+        $"\nThe Largest prime factor of this is {primefactors.Max()}");
+    }
+
+    private static List<long> ListAppend(List<long> x, long y) { x.Add(y); return x; }
+
+    public static List<long> PrimeFactors(long x) =>
+            x < 2
+            ? new List<long>()
+            : GetPrimeFactors(x, 2, new List<long>());
+
+    private static List<long> GetPrimeFactors(long x, long start, List<long> primeFactors) =>
+        x < 2
+        ? primeFactors
+        : start * start > x
+            ? ListAppend(primeFactors, x)
+            : x % start == 0
+                ? GetPrimeFactors(x / start, start, ListAppend(primeFactors, start))
+                 : GetPrimeFactors(x, (start == 2 ? 3 : start + 2), primeFactors);
+}
+
 
 //answer: 6857
