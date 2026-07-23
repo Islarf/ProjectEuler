@@ -41,17 +41,11 @@ class Solution
 
     public static int Recursive(int current, int last, int MaxTerm)
     {
-        if(current >= MaxTerm)
-        {
-            return 0;
-        }
-        else
-        {
-            int SumOfEvens = (MathHelper.IsEven(current) ? current : 0); // store the sum of current if it is even.
-            int temp = current; // save the old current
-            current += last; // do the fibonacci dance
-            return SumOfEvens + (Recursive(current, temp, MaxTerm)); // return the sum plus the next one (or 0)
-        }
+        return (
+            current >= MaxTerm
+            ? 0
+            : (MathHelper.IsEven(current)
+               ? current : 0) + Recursive(current + last, current, MaxTerm));
     }
 }
 
