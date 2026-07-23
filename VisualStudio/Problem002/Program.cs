@@ -39,14 +39,10 @@ class Solution
         return SumOfEvens;
     }
 
-    public static int Recursive(int current, int last, int MaxTerm)
-    {
-        return (
-            current >= MaxTerm
+    public static int Recursive(int current, int last, int MaxTerm) => current >= MaxTerm
             ? 0
             : (MathHelper.IsEven(current)
-               ? current : 0) + Recursive(current + last, current, MaxTerm));
-    }
+               ? current : 0) + Recursive(current + last, current, MaxTerm);
 }
 
 
