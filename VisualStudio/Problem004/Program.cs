@@ -8,19 +8,40 @@
  * 
  */
 
-Problem4.Solve(2);
+using System.Net.Http.Headers;
+
+Problem4.SolveLoop(3);
 
 public static class Problem4
 {
-    public static void Solve(int digits)
+    public static void SolveLoop(int digits)
     {
         //Creates string with (digit) length of all 9's.
-        int targetStr = int.Parse(new string('9', digits));
-        int MaxProd = targetStr * targetStr;
-        Console.Write($"Max Prod of {targetStr} * {targetStr} => {MaxProd}");
+
+        int MIN = (int)Math.Pow(10, digits - 1);
+        int MAX = (int)Math.Pow(10, digits) - 1;
+        int MaxPalindrome = 0;
+        int MaxA = 0;
+        int MaxB = 0;
+        for(int value1 = MIN; value1 <= MAX; value1 += 1)
+        {
+            for(int value2 = MIN; value2 <= MAX; value2 += 1)
+            {
+                int prod = value1 * value2;
+                if(prod>MaxPalindrome && isPalindrome(prod.ToString()))
+                {
+                    MaxPalindrome = prod;
+                    MaxA = value1;
+                    MaxB = value2;
+                }
+            }
+        }
+        Console.Write($"[LOOP]: The largest palindrome of {MaxA} * {MaxB} is : {MaxPalindrome}");
+        //Console.Write($"Max Prod of {targetStr} * {targetStr} => {MaxProd}");
     }
 
     private static bool isPalindrome(string var) => 
         var.Equals(new String(var.Reverse().ToArray()), StringComparison.OrdinalIgnoreCase);
+    
     
 }
