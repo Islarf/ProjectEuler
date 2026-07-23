@@ -8,4 +8,4 @@
 
 using EulerUtils;//so i have access to MathHelper.cs
 
-List<int> primes = [];
+Console.WriteLine(MathHelper.NextPrime(600851475143));

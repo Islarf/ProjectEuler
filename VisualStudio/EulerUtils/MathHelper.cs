@@ -4,14 +4,14 @@ namespace EulerUtils
 {
     public class MathHelper
     {
-        public static bool IsEven(int x) => x % 2 == 0;
+        public static bool IsEven(long x) => x % 2 == 0;
         
-        public static bool IsPrime(int testNumber)
+        public static bool IsPrime(long testNumber)
         {
             if (testNumber == 2) return true; //return 2 if exactly 2
             if (testNumber <= 1 || IsEven(testNumber)) return false; // break immediately if even, or is 1 or less
 
-            for(int oddNumber=3; oddNumber <= testNumber/2; oddNumber += 2)
+            for(long oddNumber=3; oddNumber <= (long)Math.Sqrt(testNumber); oddNumber += 2)
             {
                 if (testNumber % oddNumber == 0) return false;
             }
@@ -20,31 +20,35 @@ namespace EulerUtils
         }
         
         //find the next prime number after a given number
-        public static int NextPrime(int x)
-        {
-            x =
+        public static long NextPrime(long x) => 
+            FindNextPrime(
                 x < 2
                 ? 2
-                :
-                (x % 2 == 0
-                 ? x + 1
-                 : x + 2);
-
-            return FindNextPrime(x);
-        }
-        private static int FindNextPrime(int x) =>
+                : (x % 2 == 0
+                    ? x + 1
+                    : x + 2)
+            );
+        private static long FindNextPrime(long x) =>
             IsPrime(x) ? x : FindNextPrime(x + 2);
-        
 
+
+        public static int ListProduct(List<int> x) => x == null || x.Count == 0
+            ? 0
+            : NextProduct(1, 0, x);
+        public static int NextProduct(int total, int index, List<int> list) =>
+            index == list.Count
+            ? total
+            : NextProduct(total * list[index], index + 1, list);
+        
         public static List<int> PrimeFactors(int x)
         {
-            List<int> primeFactors = new List<int>();
-            int start = 3;
-            while(start < x)
-            {
-
-            }
-            return primeFactors;
+            List<int> sln = new List<int>();
+            if(x < 2) return sln;
+            else if (x == 2) return [2];
+            else if (IsPrime(x)) return [x];
+            
+            while(sln.Sum)
+            return sln;
         }
     }
 }
