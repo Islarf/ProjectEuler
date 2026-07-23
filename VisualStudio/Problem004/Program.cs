@@ -10,8 +10,8 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Headers;
-
-Problem4.SolveLoop(3);
+//Recursion BREAKS with 6, you need to use LOOP for this.
+Console.WriteLine(Problem4.SolveRecur(6));
 
 public static class Problem4
 {
@@ -30,7 +30,7 @@ public static class Problem4
             for(int value2 = MIN; value2 <= MAX; value2 += 1)
             {
                 int prod = value1 * value2;
-                if(prod>MaxPalindrome && isPalindrome(prod.ToString()))
+                if(prod>MaxPalindrome && IsPalindrome(prod.ToString()))
                 {
                     MaxPalindrome = prod;
                     MaxA = value1;
@@ -48,23 +48,16 @@ public static class Problem4
         int MAX = (int)Math.Pow(10, digits) - 1;
         return FindMaxPalindrome(MAX, MAX, MIN, 0);
     }
-    private static int FindMaxPalindrome(int a, int b, int min, int maxPalindrome)
-    {
-        //Checking if the first loop is at minimum
-        if(a < min) return maxPalindrome;
-        //Finsihing inside loop, if so reduce a by one.
-        if(b < min) return FindMaxPalindrome(a - 1, a - 1, min, maxPalindrome);
-
-        int prod = a * b;
-
-        if (prod <= maxPalindrome) return FindMaxPalindrome(a - 1, a - 1, min, maxPalindrome);
-
-        if (isPalindrome(prod.ToString())) maxPalindrome = Math.Max(maxPalindrome, prod);
-
-        return FindMaxPalindrome(a, b -1, min, maxPalindrome);
-    }
-
-    private static bool isPalindrome(string var) => 
+    private static int FindMaxPalindrome(int a, int b, int min, int maxPalindrome) =>
+        a < min 
+        ? maxPalindrome
+        : b < min || a * b <= maxPalindrome
+            ? FindMaxPalindrome(a-1, a-1, min, maxPalindrome)
+            : FindMaxPalindrome(a, b-1, min, 
+                (IsPalindrome((a*b).ToString()) ? Math.Max(maxPalindrome,a*b) : maxPalindrome)
+         );
+        
+    private static bool IsPalindrome(string var) => 
         var.Equals(new String(var.Reverse().ToArray()), StringComparison.OrdinalIgnoreCase);
     
     
