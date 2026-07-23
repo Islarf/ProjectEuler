@@ -1,1 +1,12 @@
-﻿Console.WriteLine("Hello, World!");
+﻿// Largest Prime Factor
+
+/*
+ * The prime factors of '13195' are 5, 6, 13, and 29.
+ * 
+ * What is the largest prime factor of the number 600851475143?
+ */
+
+using EulerUtils;//so i have access to MathHelper.cs
+
+int checker = 23;
+Console.WriteLine($"Is ({checker}) Prime?: {MathHelper.IsPrime(checker)}");

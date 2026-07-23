@@ -2,4 +2,5 @@
   <Project Path="EulerUtils/EulerUtils.csproj" Id="4d33bf77-bef5-469d-894c-36cbf3c10c7a" />
   <Project Path="Problem001/Problem001.csproj" />
   <Project Path="Problem002/Problem002.csproj" Id="048389a1-ba4e-46fd-82fb-8e0c7de4f963" />
+  <Project Path="Problem003/Problem003.csproj" Id="c96b1960-01bf-45f6-bca4-84d1ba7dd06b" />
 </Solution>
