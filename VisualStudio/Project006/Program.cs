@@ -39,12 +39,8 @@ public static class Problem6
     }
 
     
-    public static int SolveRecur(int cap=10, int sumOfSquares = 0, int sumOfNats = 0)
-    {
-        return
+    public static int SolveRecur(int cap=10, int sumOfSquares = 0, int sumOfNats = 0) =>
             cap > 0
             ? SolveRecur(cap - 1, sumOfSquares + (int)MathHelper.PowerOf(cap), sumOfNats + cap)
             : (int)MathHelper.PowerOf(sumOfNats) - sumOfSquares;
-
-    }
 }
