@@ -44,11 +44,11 @@ public static class Problem5
         {
             if (current % i == 0)
             {
-                return NextNumber(current, i--, cap);
+                return NextNumber(current, i - 1, cap);
             }
             else
             {
-                return NextNumber(current += cap, i = cap, cap);
+                return NextNumber(current + cap, cap, cap);
             }
         }
         else
