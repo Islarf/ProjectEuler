@@ -8,7 +8,7 @@ using EulerUtils;//so i have access to MathHelper.cs
 
 using System.Globalization;
 
-Problem5.SolveLoop();
+Problem5.SolveRecur(10);
 
 public static class Problem5
 {
@@ -27,10 +27,33 @@ public static class Problem5
             else
             {
                 i = cap;
-                currentNumber+=cap;
+                currentNumber += cap;
             }
         }
         Console.Write(currentNumber);
     }
 
+    public static void SolveRecur(int cap = 20)
+    {
+        int maxnumber = NextNumber(cap, cap, cap);
+        Console.WriteLine(maxnumber);
+    }
+    private static int NextNumber(int current, int i, int cap)
+    {
+        if (i >= 2)
+        {
+            if (current % i == 0)
+            {
+                return NextNumber(current, i--, cap);
+            }
+            else
+            {
+                return NextNumber(current += cap, i = cap, cap);
+            }
+        }
+        else
+        {
+            return current;
+        }
+    }
 }
