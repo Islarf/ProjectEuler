@@ -17,7 +17,7 @@ using EulerUtils;//so i have access to MathHelper.cs
 //Problem6.SolveLoop(100);
 //answer: 25164150
 
-Console.WriteLine(Problem6.SolveRecur(10));
+Console.WriteLine(Problem6.SolveRecur(100));
 public static class Problem6
 {
     public static void SolveLoop(int cap = 10)
@@ -43,7 +43,7 @@ public static class Problem6
     {
         return
             cap > 0
-            ? SolveRecur(cap - 1, (int)MathHelper.PowerOf(cap), sumOfNats + cap)
+            ? SolveRecur(cap - 1, sumOfSquares + (int)MathHelper.PowerOf(cap), sumOfNats + cap)
             : (int)MathHelper.PowerOf(sumOfNats) - sumOfSquares;
 
     }
