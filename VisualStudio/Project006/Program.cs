@@ -14,10 +14,10 @@
 
 using EulerUtils;//so i have access to MathHelper.cs
 
-Problem6.SolveLoop(100);
+//Problem6.SolveLoop(100);
 //answer: 25164150
 
-
+Console.WriteLine(Problem6.SolveRecur(10));
 public static class Problem6
 {
     public static void SolveLoop(int cap = 10)
@@ -36,5 +36,15 @@ public static class Problem6
         //square of the sum
         int powSumOfNats = (int)MathHelper.PowerOf(sumOfNats);
         Console.WriteLine($"{powSumOfNats} - {sumOfSquares} = {powSumOfNats - sumOfSquares}");
+    }
+
+    
+    public static int SolveRecur(int cap=10, int sumOfSquares = 0, int sumOfNats = 0)
+    {
+        return
+            cap > 0
+            ? SolveRecur(cap - 1, (int)MathHelper.PowerOf(cap), sumOfNats + cap)
+            : (int)MathHelper.PowerOf(sumOfNats) - sumOfSquares;
+
     }
 }
