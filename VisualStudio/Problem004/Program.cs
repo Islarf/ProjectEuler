@@ -10,8 +10,8 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Headers;
-//Recursion BREAKS with 6, you need to use LOOP for this.
-Console.WriteLine(Problem4.SolveRecur(6));
+//Recursion BREAKS with 6, you need to use LOOP for larger numbers.
+Console.WriteLine(Problem4.SolveRecur(3));
 
 public static class Problem4
 {
