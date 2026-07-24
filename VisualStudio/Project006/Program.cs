@@ -14,18 +14,27 @@
 
 using EulerUtils;//so i have access to MathHelper.cs
 
-Console.Write(MathHelper.PowerOf(7));
+Problem6.SolveLoop(100);
+//answer: 25164150
 
 
 public static class Problem6
 {
     public static void SolveLoop(int cap = 10)
     {
-        int sum = 0;
+        int sumOfSquares = 0;
+        int sumOfNats = 0;
         //sum of squares
-        for(int i = cap; i > 1; i--)
+        for(int i = cap; i > 0; i--)
         {
-            sum = MathHelper.PowerOf(i);
+            sumOfNats += i;
+            sumOfSquares += (int)MathHelper.PowerOf(i);
+            //Console.WriteLine($"i = {i}, sumOfSquares = {sumOfSquares}, sumOfNats = {sumOfNats}");
+
         }
+
+        //square of the sum
+        int powSumOfNats = (int)MathHelper.PowerOf(sumOfNats);
+        Console.WriteLine($"{powSumOfNats} - {sumOfSquares} = {powSumOfNats - sumOfSquares}");
     }
 }
