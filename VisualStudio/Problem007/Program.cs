@@ -6,11 +6,11 @@
 
 using EulerUtils;//so i have access to MathHelper.cs
 
-Console.WriteLine(Problem7.Solve(10001));
+Console.WriteLine(Problem7.SolveRecur(10001));
 
 public class Problem7
 {
-    public static int Solve(int cap = 6)
+    public static int SolveLoop(int cap = 6)
     {
         int xthPrime = 2;
         for(int i = cap; i > 1; i--)
@@ -19,4 +19,10 @@ public class Problem7
         }
         return xthPrime;
     }
+
+    public static int SolveRecur(int cap = 6, int xthPrime = 2) => 
+        cap > 1 
+        ? SolveRecur(cap - 1, (int)MathHelper.NextPrime(xthPrime)) 
+        : xthPrime;
+    
 }

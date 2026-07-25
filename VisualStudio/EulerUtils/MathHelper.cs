@@ -19,7 +19,7 @@ namespace EulerUtils
             return true;
         }
 
-        //find the next prime number after a given number
+        //find the next prime number after a given (PRIME) number
         public static long NextPrime(long x) =>
             FindNextPrime(
                 x < 2
