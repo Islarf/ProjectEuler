@@ -39,6 +39,23 @@ public class Problem9
         }
         return "None Found";
     }
+
+    public static string SolveRecur(int cap = 12, int a = 1, int b = 2)
+    {
+        int c = (int)Math.Sqrt(a * a + b * b);
+        if(a*a + b*b == c*c && a+b+c == cap)
+        {
+            return ($"{a} + {b} + {c} = {cap} // {a} * {b} * {c} = {a * b * c}");
+        }
+        if(a + b + c > cap || b >= cap)
+        {
+            return SolveRecur(cap, a + 1, a + 2);
+        }
+        else
+        {
+            return SolveRecur(cap, a, b + 1);
+        }
+    }
 }
 
 
