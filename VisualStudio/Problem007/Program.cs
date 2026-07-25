@@ -4,3 +4,19 @@
  * What is the 10,001'st prime number?
  */
 
+using EulerUtils;//so i have access to MathHelper.cs
+
+Console.WriteLine(Problem7.Solve(10001));
+
+public class Problem7
+{
+    public static int Solve(int cap = 6)
+    {
+        int xthPrime = 2;
+        for(int i = cap; i > 1; i--)
+        {
+            xthPrime = (int)MathHelper.NextPrime(xthPrime);
+        }
+        return xthPrime;
+    }
+}
