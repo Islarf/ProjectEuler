@@ -9,6 +9,7 @@
  * Find the product of abc.
  */
 using EulerUtils;
+using System.Collections.Specialized;
 
 Console.WriteLine(Problem9.SolveLoop(1000));
 
@@ -18,15 +19,15 @@ public class Problem9
     public static string SolveLoop(int cap = 12)
     {
         int a = 1; int b = 2;
-        while (true)
+        while (a < cap-1)
         {
             int c = (int)Math.Sqrt(a * a + b * b);
             //Console.WriteLine($"{a} + {b} + {c} = {cap} // {a} * {b} * {c} = {a * b * c}");
-            if(a < b && b < c && a + b + c == cap)
+            if(a * a + b * b == c * c && a + b + c == cap)
             {
-                return $"{a} + {b} + {c} = {cap} // {a} * {b} * {c} = {a*b*c}";
+                return $"{a} + {b} + {c} = {cap} // {a} * {b} * {c} = {a * b * c}";
             }
-            if(b >= cap / a)
+            if(a+b+c > cap)
             {
                 a++;
                 b = a+1;
