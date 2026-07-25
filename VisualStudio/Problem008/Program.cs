@@ -27,7 +27,7 @@ string LargeNum = "73167176531330624919225119674" +
     "0052406368991256071760605886116467109405077541002256983155" +
     "20005593572972571636269561882670428252483600823257530420752963450";
 
-Console.WriteLine(Problem8.SolveLoop(LargeNum, 13));
+Console.WriteLine(Problem8.SolveRecur(LargeNum, 13));
 
 public class Problem8
 {
@@ -46,15 +46,10 @@ public class Problem8
         return maxProd;
     }
 
-    public static long SolveRecur(string LargeNum, int adjacent = 4, int index = 0,  long maxProd = 1)
-    {
-        if (index + adjacent > LargeNum.Length){
-            return maxProd;
-        }
-        long curProd = ProdOfString(LargeNum.Substring(index, adjacent));
-        return SolveRecur(LargeNum, adjacent, index + 1, (maxProd > curProd) ? maxProd : curProd);
-    }
-    
+    public static long SolveRecur(string LargeNum, int adjacent = 4, int index = 0,  long maxProd = 1) => 
+        index + adjacent > LargeNum.Length
+        ? maxProd
+        : SolveRecur(LargeNum, adjacent, index + 1, Math.Max(maxProd, ProdOfString(LargeNum.Substring(index, adjacent)))); 
 
     private static long ProdOfString(string substr)
     {
