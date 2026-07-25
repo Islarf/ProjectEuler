@@ -48,10 +48,12 @@ public class Problem8
 
     public static long SolveRecur(string LargeNum, int adjacent = 4, int index = 0,  long maxProd = 1)
     {
+        if (index + adjacent > LargeNum.Length){
+            return maxProd;
+        }
         long curProd = ProdOfString(LargeNum.Substring(index, adjacent));
-        return maxProd >  ? 
+        return SolveRecur(LargeNum, adjacent, index + 1, (maxProd > curProd) ? maxProd : curProd);
     }
-    private static long RecurSubStr(string substr, maxProd)
     
 
     private static long ProdOfString(string substr)
