@@ -12,7 +12,7 @@ using EulerUtils;
 using System.Collections.Specialized;
 
 Console.WriteLine(Problem9.SolveLoop(1000));
-
+//Answer: 31875000
 
 public class Problem9
 {
