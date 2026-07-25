@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlTypes;
+using System.Reflection.Metadata.Ecma335;
 
 namespace EulerUtils
 {
@@ -63,7 +64,8 @@ namespace EulerUtils
                     ? 1 
                     : x * PowerOf(x, repeat - 1);
         }
-        
+
+        public static long Abs(long x) => x < 0 ? x * -1 : x;
     }
 }
 
