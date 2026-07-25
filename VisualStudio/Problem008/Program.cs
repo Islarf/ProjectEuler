@@ -49,14 +49,8 @@ public class Problem8
     public static long SolveRecur(string LargeNum, int adjacent = 4, int index = 0,  long maxProd = 1) => 
         index + adjacent > LargeNum.Length
         ? maxProd
-        : SolveRecur(LargeNum, adjacent, index + 1, Math.Max(maxProd, ProdOfString(LargeNum.Substring(index, adjacent)))); 
+        : SolveRecur(LargeNum, adjacent, index + 1, Math.Max(maxProd, ProdOfString(LargeNum.Substring(index, adjacent))));
 
-    private static long ProdOfString(string substr)
-    {
-        long prod = 1;
-        foreach (char c in substr){
-            prod *= (c - '0');
-        }
-        return prod;
-    }
+    private static long ProdOfString(string substr) =>
+        substr.Aggregate(1L, (prod, c) => prod * (c - '0'));
 }
