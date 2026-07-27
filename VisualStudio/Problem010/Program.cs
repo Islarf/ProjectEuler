@@ -6,20 +6,25 @@
  */
 using EulerUtils;
 
-Console.WriteLine(Problem10.Solve(2000000));
+Console.WriteLine(Problem10.SolveRecur());
 
 public class Problem10
 {
-    public static double Solve(double x = 10)
+    public static double Solve(int x = 10)
     {
-        double curPrime = MathHelper.NextPrime(1);
-        double sum = 0;
+        long curPrime = MathHelper.NextPrime(1);
+        long sum = 0;
         while(curPrime < x)
         {
             //Console.WriteLine(curPrime);
             sum += curPrime;
-            curPrime = MathHelper.NextPrime((long)curPrime);
+            curPrime = MathHelper.NextPrime(curPrime);
         }
         return sum;
     }
+
+    public static long SolveRecur(int cap = 10, long cur = 0, long sum = 0) =>
+         cur > cap
+            ? sum
+            : SolveRecur(cap, MathHelper.NextPrime(cur), sum + cur);
 }
