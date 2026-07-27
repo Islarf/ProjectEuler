@@ -40,6 +40,7 @@ public class Problem9
         return "None Found";
     }
 
+    //this does not work in C# due to 'tail call optimization' being lacking
     public static string SolveRecur(int cap = 12, int a = 1, int b = 2)
     {
         int c = (int)Math.Sqrt(a * a + b * b);
