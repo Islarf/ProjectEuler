@@ -8,14 +8,16 @@
 
 using EulerUtils;
 using System.ComponentModel;
+using System.Globalization;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+
 
 public class Problem11
 {
-    public static void Main()
+    class Grid
     {
-        //assigning the list to a 20x20 grid
-        int[,] numbers = new int[20, 20]
-        {
+        public int[,] numbers = {
             { 08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08 },
             { 49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 00 },
             { 81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 03, 49, 13, 36, 65 },
@@ -37,44 +39,64 @@ public class Problem11
             { 20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54 },
             { 01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48 }
         };
-
-        Console.WriteLine(SolveLoop(numbers));
-
+        public int maxRow => numbers.GetLength(0);
+        public int maxCol => numbers.GetLength(1);
+    }
+    
+    public static void Main()
+    {
+        Console.WriteLine(SolveLoop(new Grid()));
 
     }
-    public static int SolveLoop(int[,] grid, int adj = 4)
+    public static int SolveLoop(Grid grid, int adj = 4)
     {
         int solution = 1;
-        //int xAxis = 20;
-        //int yAxis = 20;
 
-
-        for (int x = 19; x >= 0; x--)
+        
+        for (int x = 0; x < grid.maxRow; x++)
         {
-            for (int y = 19; y >= 0; y--)
+            for (int y = 0; y < grid.maxCol; y--)
             {
-                //y axis
-                int prodx = 1;
-                int prody = 1;
-                int prodxy = 1;
+                
+                
+                if(y + adj-1 < grid.maxCol)
+                {
+                    //for()
+                    solution = Math.Max(Prod(...), solution);
+                }
+
+                /*
                 for(int AxisVar = adj-1; AxisVar >= 0; AxisVar--)
                 {
+                    //left
                     if (x - AxisVar >= 0) {
                         Console.WriteLine($"ProdX: {prodx} * = {grid[x - AxisVar, y]}");
                         prodx *= grid[x - AxisVar, y];
                     }
+                    //up
                     if(y - AxisVar >= 0)
                     {
                         Console.WriteLine($"ProdY: {prody} *= {grid[x, y - AxisVar]}");
                         prody *= grid[x, y - AxisVar];
                     }
-                    if(x - AxisVar >= 0 && y - AxisVar >= 0)
+                    //up-left
+                    if(x + AxisVar <= xAxis && y - AxisVar >= 0)
                     {
-                        Console.WriteLine($"ProdXY: {prodxy} *= {grid[x - AxisVar, y - AxisVar]}");
-                        prodxy *= grid[x - AxisVar, y - AxisVar];
+                        Console.WriteLine($"ProdDiagLeft: {prodDiagLeft} *= {grid[x - AxisVar, y - AxisVar]}");
+                        prodDiagLeft *= grid[x + AxisVar, y - AxisVar];
+                    }
+                    //up-right
+                    if (x - AxisVar >= 0 && y + AxisVar <= yAxis)
+                    {
+                        Console.WriteLine($"ProdDiagRight: {prodDiagRight} *= {grid[x+AxisVar, y+AxisVar]}");
+                        prodDiagRight *= grid[x- AxisVar, y + AxisVar];
                     }
 
+
+
                 }
+
+
                 if(prodx > solution)
                 {
                     Console.WriteLine($"ProdX {prodx} > Solution {solution}");
@@ -85,17 +107,28 @@ public class Problem11
                     Console.WriteLine($"ProdY {prody} > Solution {solution}");
                     solution = prody;
                 }
-                if(prodxy > solution)
+                if(prodDiagLeft > solution)
                 {
-                    Console.WriteLine($"ProdXY {prodxy} > Solution {solution}");
-                    solution = prodxy;
+                    Console.WriteLine($"ProdDiagRight {prodDiagLeft} > Solution {solution}");
+                    solution = prodDiagLeft;
                 }
-                //solution = prodx > solution ? prodx : prody > solution ? prody : prodxy > solution ? prodxy : solution; 
+                if(prodDiagRight > solution)
+                {
+                    Console.WriteLine($"ProdDiagRight {prodDiagRight} > Solution {solution}");
+                    solution = prodDiagRight;
+                }
+                */
             }
         }
 
         return solution;
     }
+
+    private int Prod(Grid g, int prod, int adj, string vert, int i=0)
+    {
+        if (y != -1)
+            return i < adj
+                
     
     
 }
