@@ -9,5 +9,6 @@
   <Project Path="Problem008/Problem008.csproj" Id="0f90c230-5405-4b77-a342-16a3d3c9bb2a" />
   <Project Path="Problem009/Problem009.csproj" Id="93d08cd0-2398-4544-a91c-35d6cd246b4b" />
   <Project Path="Problem010/Problem010.csproj" Id="e4826541-8a9d-456e-bd7e-5a2b4239992b" />
+  <Project Path="Problem011/Problem011.csproj" Id="fb2e0dec-e50d-416c-a6df-1a94b6bfba74" />
   <Project Path="Project006/Problem006.csproj" Id="b9164885-28cf-49ef-8877-41efcb2e28d7" />
 </Solution>
