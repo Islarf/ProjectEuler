@@ -14,7 +14,7 @@ public class Problem11
     public static void Main()
     {
         //assigning the list to a 20x20 grid
-        int[,] grid = new int[20, 20]
+        int[,] numbers = new int[20, 20]
         {
             { 08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08 },
             { 49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 00 },
@@ -38,7 +38,7 @@ public class Problem11
             { 01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48 }
         };
 
-        Console.WriteLine(SolveLoop(grid));
+        Console.WriteLine(SolveLoop(numbers));
 
 
     }
@@ -49,9 +49,9 @@ public class Problem11
         //int yAxis = 20;
 
 
-        for (int x = 9; x >= adj; x--)
+        for (int x = 19; x >= 0; x--)
         {
-            for (int y = 19; y >= adj; y--)
+            for (int y = 19; y >= 0; y--)
             {
                 //y axis
                 int prodx = 1;
@@ -59,11 +59,38 @@ public class Problem11
                 int prodxy = 1;
                 for(int AxisVar = adj-1; AxisVar >= 0; AxisVar--)
                 {
-                    prodx *= grid[x - AxisVar, y];
-                    prody *= grid[x, y - AxisVar];
-                    prodxy *= grid[x - AxisVar, y - AxisVar];
+                    if (x - AxisVar >= 0) {
+                        Console.WriteLine($"ProdX: {prodx} * = {grid[x - AxisVar, y]}");
+                        prodx *= grid[x - AxisVar, y];
+                    }
+                    if(y - AxisVar >= 0)
+                    {
+                        Console.WriteLine($"ProdY: {prody} *= {grid[x, y - AxisVar]}");
+                        prody *= grid[x, y - AxisVar];
+                    }
+                    if(x - AxisVar >= 0 && y - AxisVar >= 0)
+                    {
+                        Console.WriteLine($"ProdXY: {prodxy} *= {grid[x - AxisVar, y - AxisVar]}");
+                        prodxy *= grid[x - AxisVar, y - AxisVar];
+                    }
+
                 }
-                solution = prodx > solution ? prodx : prody > solution ? prody : prodxy > solution ? prodxy : solution; 
+                if(prodx > solution)
+                {
+                    Console.WriteLine($"ProdX {prodx} > Solution {solution}");
+                    solution = prodx;
+                }
+                if(prody > solution)
+                {
+                    Console.WriteLine($"ProdY {prody} > Solution {solution}");
+                    solution = prody;
+                }
+                if(prodxy > solution)
+                {
+                    Console.WriteLine($"ProdXY {prodxy} > Solution {solution}");
+                    solution = prodxy;
+                }
+                //solution = prodx > solution ? prodx : prody > solution ? prody : prodxy > solution ? prodxy : solution; 
             }
         }
 
